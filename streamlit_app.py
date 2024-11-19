@@ -76,14 +76,14 @@ selected_dm = st.sidebar.multiselect("Direct Manager", dm_options, default="Sele
 if "Select All" not in selected_dm:
     filtered_df = filtered_df[filtered_df['Direct Manager'].isin(selected_dm)]
 
-# Filter by Process with Select All
-p_options = sorted(filtered_df['Process'].unique())
-p_options.insert(0, "Select All")
-selected_p = st.sidebar.multiselect("Select Process", p_options, default="Select All")
+# Filter by Durect Manager with Select All
+pr_options = sorted(filtered_df['Process'].unique())
+pr_options.insert(0, "Select All")
+selected_pr = st.sidebar.multiselect("Process", pr_options, default="Select All")
 
-# Filter data by selected Day(s)
-if "Select All" not in selected_p:
-    filtered_df = filtered_df[filtered_df['Process'].isin(selected_p)]
+# Filter data by selected Direct Manager(s)
+if "Select All" not in selected_pr:
+    filtered_df = filtered_df[filtered_df['Process'].isin(selected_pr)]
 
 # Filter by Process with Select All
 ds_options = sorted(filtered_df['DESIGNATION'].unique())
