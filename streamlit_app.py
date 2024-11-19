@@ -77,13 +77,13 @@ if "Select All" not in selected_dm:
     filtered_df = filtered_df[filtered_df['Direct Manager'].isin(selected_dm)]
 
 # Filter by Process with Select All
-pr_options = sorted(filtered_df['Process'].unique())
-pr_options.insert(0, "Select All")
-selected_pr = st.sidebar.multiselect("Process", pr_options, default="Select All")
+p_options = sorted(filtered_df['Process'].unique())
+p_options.insert(0, "Select All")
+selected_p = st.sidebar.multiselect("Select Process", p_options, default="Select All")
 
-# Filter data by selected Direct Manager(s)
-if "Select All" not in selected_pr:
-    filtered_df = filtered_df[filtered_df['Process'].isin(selected_pr)]
+# Filter data by selected Day(s)
+if "Select All" not in selected_p:
+    filtered_df = filtered_df[filtered_df['Process'].isin(selected_p)]
 
 # Filter by Process with Select All
 ds_options = sorted(filtered_df['DESIGNATION'].unique())
@@ -116,8 +116,8 @@ else:
 
 
     # Convert "in Call Duration" to timedelta for easy comparison
-    filtered_df["In-Call Duration"] = pd.to_timedelta(filtered_df["In-Call Duration"])
-    filtered_df["Average Call Handling Duration"] = pd.to_timedelta(filtered_df["Average Call Handling Duration"])
+    filtered_df["In-Call Duration"] = pd.to_timedelta(filtered_df["In-Call Duration"], unit="D")
+    filtered_df["Average Call Handling Duration"] = pd.to_timedelta(filtered_df["Average Call Handling Duration"], unit="D")
     
     total_calls = filtered_df['Total Call Answered'].sum()
     avg_call_duration = filtered_df["In-Call Duration"].mean()
